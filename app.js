@@ -9,12 +9,7 @@ const app = Vue.createApp({
     };
   },
   computed: {
-    logEventOnScreen() {
-      return [
-        { "log--player": this.gameEvent.isPlayer },
-        { "log--monster": this.gameEvent.isPlayer },
-      ];
-    },
+    logEventOnScreen() {},
     healthBarMonster() {
       if (this.monsterHealth <= 0) {
         return {
@@ -47,15 +42,11 @@ const app = Vue.createApp({
       this.playerAttack(5, 10);
       if (this.checkGameOver()) return;
       this.monsterAttack();
-      console.log(this.gameEvent);
-      console.log(this.gameEvent.length);
     },
     specialAttack() {
       this.playerAttack(10, 20);
       if (this.checkGameOver()) return;
       this.monsterAttack();
-      console.log(this.gameEvent);
-      console.log(this.gameEvent.length);
     },
     calculateDamage(min, max) {
       return Math.max(Math.floor(Math.random() * max) + 1, min);
@@ -96,7 +87,6 @@ const app = Vue.createApp({
     checkGameOver() {
       if (this.playerHealth <= 0) {
         if (confirm("Monster Won ! , Start new Game?")) {
-          console.log("monster Wins");
           this.startNewGame();
         } else {
           this.isGameRunning = false;
@@ -105,7 +95,6 @@ const app = Vue.createApp({
         return true;
       } else if (this.monsterHealth <= 0) {
         if (confirm("Player Won ! , Start new Game?")) {
-          console.log("monster Wins");
           this.startNewGame();
         } else {
           this.isGameRunning = false;

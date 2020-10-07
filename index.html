@@ -45,10 +45,16 @@
       <section id="log" v-show="gameEvent.length > 0" class="container">
         <h2>Battle Log</h2>
         <ul>
-          <li v-for="(turn ,index)  in gameEvent" :key="index">
-            <h2 :class="logEventOnScreen">
-              {{turn.text}} <span class="log--damage">{{turn.damage}}</span>
+          <li
+            v-for="(turn ,index)  in gameEvent"
+            :key="index"
+            :class="[{ logPlayer:!turn.isPlayer},{ logMonster:turn.isPlayer},{ logHeal:turn.isHeal}]"
+          >
+            <h2>
+              {{turn.text}}
+              <span class="log--damage">{{turn.damage}}</span>
             </h2>
+            <hr />
           </li>
         </ul>
       </section>
