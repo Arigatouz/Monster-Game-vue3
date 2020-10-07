@@ -30,7 +30,7 @@ section {
   height: 40px;
   border: 1px solid #575757;
   margin: 1rem 0;
-  background: #fde5e5;
+  background: #f6caca;
 }
 
 .healthbar__value {
@@ -104,17 +104,21 @@ button:disabled {
 }
 
 .log--player {
-  color: #7700ff;
+  color: #7700ff !important;
+  text-transform: uppercase !important;
 }
 
 .log--monster {
-  color: #da8d00;
+  color: #da8d00 !important;
+  text-transform: uppercase !important;
 }
 
 .log--damage {
   color: red;
+  font-size: 40px;
 }
 
 .log--heal {
   color: green;
+  text-transform: uppercase;
 }

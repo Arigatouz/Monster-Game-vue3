@@ -20,30 +20,37 @@
       <section id="monster" class="container">
         <h2>Monster HP :{{monsterHealth}}</h2>
         <div class="healthbar">
-          <div
-            class="healthbar__value"
-            :style="{width : monsterHealth + '%'}"
-          ></div>
+          <div class="healthbar__value" :style="[healthBarMonster]"></div>
         </div>
       </section>
       <section id="player" class="container">
         <h2>Player HP : {{playerHealth}}</h2>
         <div class="healthbar">
-          <div
-            class="healthbar__value"
-            :style="{width : playerHealth + '%'}"
-          ></div>
+          <div class="healthbar__value" :style="[healthBarPlayer]"></div>
         </div>
       </section>
-      <section id="controls">
-        <button @click="Attack(7, 10)">ATTACK</button>
-        <button @click="specialAttack(12 ,20)">SPECIAL ATTACK</button>
-        <button>HEAL</button>
-        <button>SURRENDER</button>
+      <!-- ========= Start new Game Section -->
+      <section id="" v-if="!isGameRunning" class="container">
+        <h2>{{winner}}</h2>
+        <button @click="startNewGame()">Start New Game</button>
       </section>
-      <section id="log" class="container">
+      <!-- ======== Controls Section -->
+      <section id="controls" v-else="isGameRunning">
+        <button @click="Attack()">ATTACK</button>
+        <button @click="specialAttack()">SPECIAL ATTACK</button>
+        <button @click="healPlayer()">HEAL</button>
+        <button @click="giveUp()">SURRENDER</button>
+      </section>
+      <!-- ============= Log Section -->
+      <section id="log" v-show="gameEvent.length > 0" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li v-for="(turn ,index)  in gameEvent" :key="index">
+            <h2 :class="logEventOnScreen">
+              {{turn.text}} <span class="log--damage">{{turn.damage}}</span>
+            </h2>
+          </li>
+        </ul>
       </section>
     </div>
   </body>
